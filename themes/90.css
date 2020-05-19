@@ -1,0 +1,20 @@
+/*Obrót opisu ocen o 90 st*/
+#fr90 {
+	position:relative;
+
+}
+
+#r90 {
+	display:block;
+	position:absolute;
+	top:-12px;
+	right: -19px;
+	-webkit-transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);
+	-o-transform: rotate(-90deg);
+}
+
+/*Pod¶wietlenie ocen ucznia*/
+tr.rat-student:hover td {
+	background:#ffff99;
+}
