@@ -11,3 +11,5 @@ e-dziennik oparty na CMS PHP-Fusion. Pozwala na:
 
 ## Instalacja
 Wgraj pliki na serwer i wejdź na strone.
+Aktualnę paczkę można pobrać klikając poniższy link:
+https://github.com/szygmon/e-dziennik/archive/master.zip
