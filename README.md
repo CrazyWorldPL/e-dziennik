@@ -9,6 +9,9 @@ e-dziennik oparty na CMS PHP-Fusion powstały w 2011 roku jako projekt na obron�
 - komunikację między użytkownikami,
 ...
 
+## Film pokazujący możliwości
+https://www.youtube.com/watch?v=ubcQbNkQrWY&feature=youtu.be
+
 ## Instalacja
 Wgraj pliki na serwer i wejdź na strone.
 Aktualnę paczkę można pobrać klikając poniższy link:
