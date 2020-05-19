@@ -9,5 +9,5 @@ e-dziennik oparty na CMS PHP-Fusion. Pozwala na:
 - komunikację między użytkownikami,
 ...
 
-##Instalacja
+## Instalacja
 Wgraj pliki na serwer i wejdź na strone.
