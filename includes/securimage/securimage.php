@@ -338,7 +338,7 @@ class Securimage {
     fseek($fp, rand(0, $fsize - $max), SEEK_SET);
     $data = fread($fp, 128);
     fclose($fp);
-    $data = preg_replace("/\r?\n/", "\n", $data);
+    $data = preg_replace_callback("/\r?\n/", "\n", $data);
 
     $start = strpos($data, "\n", rand(0, 100)) + 1;
     $end   = strpos($data, "\n", $start);

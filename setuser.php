@@ -58,7 +58,7 @@ if (iMEMBER && (isset($_REQUEST['logout']) && $_REQUEST['logout'] == "yes")) {
 		if (isset($_COOKIE[COOKIE_PREFIX.'user'])) {
 			$cookie_vars = explode(".", $_COOKIE[COOKIE_PREFIX.'user']);
 			$user_pass = preg_check("/^[0-9a-z]{32}$/", $cookie_vars['1']) ? $cookie_vars['1'] : "";
-			$user_name = preg_replace(array("/\=/","/\#/","/\sOR\s/"), "", stripinput($_GET['user']));
+			$user_name = preg_replace_callback(array("/\=/","/\#/","/\sOR\s/"), "", stripinput($_GET['user']));
 			if (!dbcount("(user_id)", DB_USERS, "user_name='".$user_name."' AND user_password='".md5($user_pass)."'")) {
 				echo "<strong>".$locale['global_196']."</strong><br /><br />\n";
 			} else {

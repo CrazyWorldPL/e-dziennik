@@ -17,5 +17,5 @@
 +--------------------------------------------------------*/
 if (!defined("IN_FUSION")) { die("Access Denied"); }
 
-$text = preg_replace('#\[right\](.*?)\[/right\]#si', '<div style=\'text-align:right\'>\1</div>', $text);
+$text = preg_replace_callback('#\[right\](.*?)\[/right\]#si', '<div style=\'text-align:right\'>\1</div>', $text);
 ?>

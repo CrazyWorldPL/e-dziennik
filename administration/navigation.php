@@ -47,7 +47,7 @@ for ($i = 1; $i < 6; $i++) {
 					echo "<hr class='side-hr' />\n";
 					$index_link = true;
 				}
-				$admin_nav_opts .= "<option value='".ADMIN.$data['admin_link'].$aidlink."'>".preg_replace("/&(?!(#\d+|\w+);)/", "&amp;", $data['admin_title'])."</option>\n";
+				$admin_nav_opts .= "<option value='".ADMIN.$data['admin_link'].$aidlink."'>".preg_replace_callback("/&(?!(#\d+|\w+);)/", "&amp;", $data['admin_title'])."</option>\n";
 			}
 		}
 	}

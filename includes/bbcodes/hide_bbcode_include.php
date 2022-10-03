@@ -18,8 +18,8 @@
 if (!defined("IN_FUSION")) { die("Access Denied"); }
 
 if (iADMIN) {
-	$text = preg_replace('#\[hide\](.*?)\[/hide\]#si', '<div class=\'quote\'><strong>'.$locale['bb_hide'].'</strong><br /><span style=\'color:red;font-weight:bold\'>\1</span></div>', $text);
+	$text = preg_replace_callback('#\[hide\](.*?)\[/hide\]#si', '<div class=\'quote\'><strong>'.$locale['bb_hide'].'</strong><br /><span style=\'color:red;font-weight:bold\'>\1</span></div>', $text);
 } else {
-	$text = preg_replace('#\[hide\](.*?)\[/hide\]#si', '', $text);
+	$text = preg_replace_callback('#\[hide\](.*?)\[/hide\]#si', '', $text);
 }
 ?>

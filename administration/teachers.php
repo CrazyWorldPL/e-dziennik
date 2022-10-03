@@ -20,7 +20,7 @@ if ($_GET['step'] == "add") {
 	if (isset($_POST['add_user'])) {
 		$error = "";
 		
-		$username = trim(preg_replace("/ +/i", " ", $_POST['username']));
+		$username = trim(preg_replace_callback("/ +/i", " ", $_POST['username']));
 		
 		if ($username == "" || trim($_POST['password1']) == "" || trim($_POST['email']) == "") { $error .= $locale['451']."<br />\n"; }
 		
@@ -102,7 +102,7 @@ if ($_GET['step'] == "add") {
 		closetable();
 	}
 } 
-// Podgl±d
+// Podglï¿½d
 elseif ($_GET['step'] == "view" && isnum($_GET['user_id'])) {
 	$result = dbquery("SELECT * FROM ".DB_USERS." WHERE user_id='".$_GET['user_id']."'");
 	if (dbrows($result)) { $user_data = dbarray($result); } else { redirect(FUSION_SELF.$aidlink); }

@@ -17,5 +17,5 @@
 +--------------------------------------------------------*/
 if (!defined("IN_FUSION")) { die("Access Denied"); }
 
-$text = preg_replace('#\[icq\]([0-9]*?)\[/icq\]#si', '<strong>'.$locale['bb_icq'].'</strong> <img src=\'http://status.icq.com/online.gif?img=26&icq=\1\' alt=\'\1\' border=\'0\' style=\'vertical-align:middle\'><a href=\'ICQ:\1\' target=\'_blank\'>\1</a>', $text);
+$text = preg_replace_callback('#\[icq\]([0-9]*?)\[/icq\]#si', '<strong>'.$locale['bb_icq'].'</strong> <img src=\'http://status.icq.com/online.gif?img=26&icq=\1\' alt=\'\1\' border=\'0\' style=\'vertical-align:middle\'><a href=\'ICQ:\1\' target=\'_blank\'>\1</a>', $text);
 ?>

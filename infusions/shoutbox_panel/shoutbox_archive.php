@@ -89,7 +89,7 @@ if (iMEMBER) {
 		$flood = false;
 		$archive_shout_name = $userdata['user_id'];
 		$archive_shout_message = str_replace("\n", " ", $_POST['archive_shout_message']);
-		$archive_shout_message = preg_replace("/^(.{255}).*$/", "$1", $archive_shout_message);
+		$archive_shout_message = preg_replace_callback("/^(.{255}).*$/", "$1", $archive_shout_message);
 		$archive_shout_message = trim(stripinput(censorwords($archive_shout_message)));
 		if (iMEMBER && (isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['shout_id']) && isnum($_GET['shout_id']))) {
 			$comment_updated = false;

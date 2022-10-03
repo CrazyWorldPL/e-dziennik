@@ -56,7 +56,7 @@ function add_to_head($tag=""){
 function replace_in_output($target, $replace, $modifiers=""){
 	global $fusion_page_replacements;
 	
-	$fusion_page_replacements .= "\$output = preg_replace('^$target^$modifiers', '$replace', \$output);";
+	$fusion_page_replacements .= "\$output = preg_replace_callback('^$target^$modifiers', '$replace', \$output);";
 }
 
 function add_handler($name){
@@ -70,14 +70,14 @@ function handle_output($output){
 	global $fusion_page_head_tags, $fusion_page_title, $fusion_page_meta, $fusion_page_replacements, $fusion_output_handlers, $settings;
 
 	if(!empty($fusion_page_head_tags)){
-		$output = preg_replace("#</head>#", $fusion_page_head_tags."</head>", $output, 1);
+		$output = preg_replace_callback("#</head>#", $fusion_page_head_tags."</head>", $output, 1);
 	}
 	if($fusion_page_title != $settings['sitename']){
-		$output = preg_replace("#<title>.*</title>#i", "<title>".$fusion_page_title."</title>", $output, 1);
+		$output = preg_replace_callback("#<title>.*</title>#i", "<title>".$fusion_page_title."</title>", $output, 1);
 	}
 	if(!empty($fusion_page_meta)){
 		foreach($fusion_page_meta as $name => $content){
-			$output = preg_replace("#<meta (http-equiv|name)='$name' content='.*' />#i", "<meta \\1='".$name."' content='".$content."' />", $output, 1);
+			$output = preg_replace_callback("#<meta (http-equiv|name)='$name' content='.*' />#i", "<meta \\1='".$name."' content='".$content."' />", $output, 1);
 		}
 	}
 	if(!empty($fusion_page_replacements)){

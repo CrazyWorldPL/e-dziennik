@@ -23,7 +23,7 @@
 if (!defined("IN_FUSION")) { die("Access Denied"); }
 
 $link = FUSION_SELF.(FUSION_QUERY ? "?".FUSION_QUERY : "");
-$link = preg_replace("^(&amp;|\?)s_action=(edit|delete)&amp;shout_id=\d*^", "", $link);
+$link = preg_replace_callback("^(&amp;|\?)s_action=(edit|delete)&amp;shout_id=\d*^", "", $link);
 $sep = stristr($link, "?") ? "&amp;" : "?";
 
 if (iMEMBER && (isset($_GET['s_action']) && $_GET['s_action'] == "delete") && (isset($_GET['shout_id']) && isnum($_GET['shout_id']))) {
@@ -80,7 +80,7 @@ if (iMEMBER) {
 		$flood = false;
 		$shout_name = $userdata['user_id'];
 		$shout_message = str_replace("\n", " ", $_POST['shout_message']);
-		$shout_message = preg_replace("/^(.{255}).*$/", "$1", $shout_message);
+		$shout_message = preg_replace_callback("/^(.{255}).*$/", "$1", $shout_message);
 		$shout_message = trim(stripinput(censorwords($shout_message)));
 		if (iMEMBER && (isset($_GET['s_action']) && $_GET['s_action'] == "edit") && (isset($_GET['shout_id']) && isnum($_GET['shout_id']))) {
 			$comment_updated = false;

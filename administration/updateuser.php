@@ -30,7 +30,7 @@ $error = ""; $db_values = ""; $set_avatar = "";
 $result = dbquery("SELECT * FROM ".DB_USERS." WHERE user_id='".$_GET['user_id']."'");
 $user_data = dbarray($result);
 
-$user_name = trim(preg_replace("/ +/i", " ", $_POST['user_name']));
+$user_name = trim(preg_replace_callback("/ +/i", " ", $_POST['user_name']));
 $user_email = trim(stripinput($_POST['user_email']));
 $user_new_password = trim(stripinput($_POST['user_new_password']));
 $user_new_password2 = trim(stripinput($_POST['user_new_password2']));

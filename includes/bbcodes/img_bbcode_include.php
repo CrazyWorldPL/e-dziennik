@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | PHP-Fusion Content Management System
-| Copyright © 2002 - 2007 Nick Jones
+| Copyright ï¿½ 2002 - 2007 Nick Jones
 | http://www.php-fusion.co.uk/
 +--------------------------------------------------------+
 | Filename: img_bbcode_include.php
@@ -17,5 +17,5 @@
 +--------------------------------------------------------*/
 if (!defined("IN_FUSION")) { die("Access Denied"); }
 
-$text = preg_replace("#\[img\]((http|ftp|https|ftps)://)(.*?)(\.(jpg|jpeg|gif|png|JPG|JPEG|GIF|PNG))\[/img\]#sie","'<span style=\'display: block; width: 300px; max-height: 300px; overflow: auto;\' class=\'forum-img-wrapper\'><img src=\'\\1'.str_replace(array('?','&amp;','&','='),'','\\3').'\\4\' alt=\'\\3\\4\' style=\'border:0px\' class=\'forum-img\' /></span>'",$text);
+$text = preg_replace_callback("#\[img\]((http|ftp|https|ftps)://)(.*?)(\.(jpg|jpeg|gif|png|JPG|JPEG|GIF|PNG))\[/img\]#sie","'<span style=\'display: block; width: 300px; max-height: 300px; overflow: auto;\' class=\'forum-img-wrapper\'><img src=\'\\1'.str_replace(array('?','&amp;','&','='),'','\\3').'\\4\' alt=\'\\3\\4\' style=\'border:0px\' class=\'forum-img\' /></span>'",$text);
 ?>

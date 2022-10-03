@@ -45,7 +45,7 @@ for($i=0; $i<count($matches[1]); $i++) {
       } else {
          $geshi_save = "";
       }
-      $text=preg_replace("#\[geshi=(.*?)\](.*?)\[/geshi\]#si",'$2',$text);
+      $text=preg_replace_callback("#\[geshi=(.*?)\](.*?)\[/geshi\]#si",'$2',$text);
       $text=str_replace($matches[2][$i], "<div class='tbl-border tbl2' style='width:400px'>".$geshi_save."<strong>GeSHi: ".$geshi->get_language_name()."</strong></div><div class='tbl-border tbl1' style='width:400px;height:auto;white-space:nowrap;overflow:auto;background-color:#ffffff;'><code style='white-space:nowrap'>".$geshi->parse_code()."</code></div>", $text);
    } else {
       $ccount = substr_count($text, "[geshi=");
@@ -55,7 +55,7 @@ for($i=0; $i<count($matches[1]); $i++) {
          } else {
             $geshi_save = "";
          }
-         $text = preg_replace("#\[geshi=(.*?)\](.*?)\[/geshi\]#sie", "'<div class=\'tbl-border tbl2\' style=\'width:400px\'>".$geshi_save."<strong><i><u>".$locale['bb_geshi_parser1'].":</u></i> ".$locale['bb_geshi_parser2'].":</strong></div><div class=\'tbl-border tbl1\' style=\'width:400px;white-space:nowrap;overflow:auto\'><code style=\'white-space:nowrap\'>'.formatcode('\\2').'<br /><br /><br /></code></div>'", $text);
+         $text = preg_replace_callback("#\[geshi=(.*?)\](.*?)\[/geshi\]#sie", "'<div class=\'tbl-border tbl2\' style=\'width:400px\'>".$geshi_save."<strong><i><u>".$locale['bb_geshi_parser1'].":</u></i> ".$locale['bb_geshi_parser2'].":</strong></div><div class=\'tbl-border tbl1\' style=\'width:400px;white-space:nowrap;overflow:auto\'><code style=\'white-space:nowrap\'>'.formatcode('\\2').'<br /><br /><br /></code></div>'", $text);
       }
    }
    unset($lines);

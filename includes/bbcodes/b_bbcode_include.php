@@ -17,5 +17,5 @@
 +--------------------------------------------------------*/
 if (!defined("IN_FUSION")) { die("Access Denied"); }
 
-$text = preg_replace('#\[b\](.*?)\[/b\]#si', '<strong>\1</strong>', $text);
+$text = preg_replace_callback('#\[b\](.*?)\[/b\]#si', '<strong>\1</strong>', $text);
 ?>
