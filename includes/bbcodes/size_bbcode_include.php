@@ -17,5 +17,5 @@
 +--------------------------------------------------------*/
 if (!defined("IN_FUSION")) { die("Access Denied"); }
 
-$text = preg_replace_callback('#\[size=(12|16|20|24|28|32)\](.*?)\[/size\]#si', '<span style=\'font-size:\1px\'>\2</span>', $text);
+$text = preg_replace('#\[size=(12|16|20|24|28|32)\](.*?)\[/size\]#si', '<span style=\'font-size:\1px\'>\2</span>', $text);
 ?>

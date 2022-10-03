@@ -26,7 +26,7 @@ if (!iMEMBER || !isset($_POST['user_hash']) || $_POST['user_hash'] != $user_data
 
 $error = ""; $db_values = ""; $set_avatar = "";
 
-$user_name = trim(preg_replace_callback("/ +/i", " ", $_POST['user_name']));
+$user_name = trim(preg_replace("/ +/i", " ", $_POST['user_name']));
 $name = trim(stripinput($_POST['name']));
 $surname = trim(stripinput($_POST['surname']));
 $user_email = trim(stripinput($_POST['user_email']));

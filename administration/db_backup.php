@@ -144,14 +144,14 @@ if (isset($_POST['btn_do_restore'])) {
 				if (preg_match("/^DROP TABLE IF EXISTS `(.*?)`/im",$result,$tmp)) {
 					$tbl = $tmp[1];
 					if (in_array($tbl, $_POST['list_tbl'])) {
-						$result = preg_replace_callback("/^DROP TABLE IF EXISTS `$inf_tblpre(.*?)`/im","DROP TABLE IF EXISTS `$restore_tblpre\\1`",$result);
+						$result = preg_replace("/^DROP TABLE IF EXISTS `$inf_tblpre(.*?)`/im","DROP TABLE IF EXISTS `$restore_tblpre\\1`",$result);
 						mysql_unbuffered_query($result);
 					}
 				}
 				if (preg_match("/^CREATE TABLE `(.*?)`/im",$result,$tmp)) {
 					$tbl = $tmp[1];
 					if (in_array($tbl, $_POST['list_tbl'])) {
-						$result = preg_replace_callback("/^CREATE TABLE `$inf_tblpre(.*?)`/im","CREATE TABLE `$restore_tblpre\\1`",$result);
+						$result = preg_replace("/^CREATE TABLE `$inf_tblpre(.*?)`/im","CREATE TABLE `$restore_tblpre\\1`",$result);
 						mysql_unbuffered_query($result);
 					}
 				}
@@ -162,7 +162,7 @@ if (isset($_POST['btn_do_restore'])) {
 				if (preg_match("/INSERT INTO `(.*?)`/i",$result,$tmp)) {
 					$ins = $tmp[1];
 					if (in_array($ins, $_POST['list_ins'])) {
-						$result = preg_replace_callback("/INSERT INTO `$inf_tblpre(.*?)`/i","INSERT INTO `$restore_tblpre\\1`",$result);
+						$result = preg_replace("/INSERT INTO `$inf_tblpre(.*?)`/i","INSERT INTO `$restore_tblpre\\1`",$result);
 						mysql_unbuffered_query($result);
 					}
 				}

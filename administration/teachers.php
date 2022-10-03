@@ -20,7 +20,7 @@ if ($_GET['step'] == "add") {
 	if (isset($_POST['add_user'])) {
 		$error = "";
 		
-		$username = trim(preg_replace_callback("/ +/i", " ", $_POST['username']));
+		$username = trim(preg_replace("/ +/i", " ", $_POST['username']));
 		
 		if ($username == "" || trim($_POST['password1']) == "" || trim($_POST['email']) == "") { $error .= $locale['451']."<br />\n"; }
 		

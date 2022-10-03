@@ -41,7 +41,7 @@ echo "</head>
 if (isset($email) && isset($account)) {
 	$error = 0;
 	if (FUSION_QUERY != "email=".$email."&amp;account=".$account) redirect("index.php");
-	$email = stripinput(trim(preg_replace_callback("/ +/i", "", $email)));
+	$email = stripinput(trim(preg_replace("/ +/i", "", $email)));
 	if (!preg_match("/^[-0-9A-Z_\.]{1,50}@([-0-9A-Z_\.]+\.){1,50}([0-9A-Z]){2,4}$/i", $email)) $error = 1;
 	if (!preg_match("/^[0-9a-z]{32}$/", $account)) $error = 1;
 	if ($error == 0) {
@@ -60,7 +60,7 @@ if (isset($email) && isset($account)) {
 	}
 	if ($error == 1) redirect("index.php");
 } elseif (isset($_POST['send_password'])) {
-	$email = stripinput(trim(preg_replace_callback("/ +/i", "", $_POST['email'])));
+	$email = stripinput(trim(preg_replace("/ +/i", "", $_POST['email'])));
 	if (preg_match("/^[-0-9A-Z_\.]{1,50}@([-0-9A-Z_\.]+\.){1,50}([0-9A-Z]){2,4}$/i", $email)) {
 		$result = dbquery("SELECT * FROM ".$db_prefix."users WHERE user_email='$email'");
 		if (dbrows($result) != 0) {

@@ -49,8 +49,8 @@ if (isset($_GET['action']) && $_GET['action'] == "deleteshouts") {
 } else {
 	if (isset($_POST['saveshout']) && (isset($_GET['shout_id']) && isnum($_GET['shout_id']))) {
 		$shout_message = str_replace("\n", " ", $_POST['shout_message']);
-		$shout_message = preg_replace_callback("/^(.{255}).*$/", "$1", $shout_message);
-		$shout_message = preg_replace_callback("/([^\s]{25})/", "$1\n", $shout_message);
+		$shout_message = preg_replace("/^(.{255}).*$/", "$1", $shout_message);
+		$shout_message = preg_replace("/([^\s]{25})/", "$1\n", $shout_message);
 		$shout_message = stripinput($shout_message);
 		$shout_message = str_replace("\n", "<br />", $shout_message);
 		if ($shout_message) {

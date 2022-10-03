@@ -173,8 +173,8 @@ echo "</td>\n</tr>\n</table>\n</form>\n";
 closetable();
 
 function search_striphtmlbbcodes($text) {
-	$text = preg_replace_callback("[\[(.*?)\]]", "", $text);
-	$text = preg_replace_callback("<\<(.*?)\>>", "", $text);
+	$text = preg_replace("[\[(.*?)\]]", "", $text);
+	$text = preg_replace("<\<(.*?)\>>", "", $text);
 	return $text;
 }
 

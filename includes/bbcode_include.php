@@ -118,7 +118,7 @@ function strip_bbcodes($text) {
 		}
 		if (isset($__BBCODE_NOT_QUOTABLE__) && sizeof($__BBCODE_NOT_QUOTABLE__) != 0) {
 			foreach ($__BBCODE_NOT_QUOTABLE__ as $key => $bbname) {
-				$text = preg_replace_callback('#\['.$bbname.'(.*?)\](.*?)\[/'.$bbname.'\]#si', '', $text);
+				$text = preg_replace('#\['.$bbname.'(.*?)\](.*?)\[/'.$bbname.'\]#si', '', $text);
 			}
 			unset ($__BBCODE_NOT_QUOTABLE__);
 		}

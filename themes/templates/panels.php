@@ -33,7 +33,7 @@ while ($base_url_count != 0) {
 	$base_url_count--;
 }
 
-define("START_PAGE", substr(preg_replace_callback("#(&amp;|\?)(s_action=edit&amp;shout_id=)([0-9]+)#s", "", $start_page), 1));
+define("START_PAGE", substr(preg_replace("#(&amp;|\?)(s_action=edit&amp;shout_id=)([0-9]+)#s", "", $start_page), 1));
 
 // Side & center panels
 ob_start();

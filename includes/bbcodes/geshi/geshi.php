@@ -492,7 +492,7 @@ class GeSHi {
         $this->error = false;
         $this->strict_mode = GESHI_NEVER;
 
-        $language = preg_replace_callback('#[^a-zA-Z0-9\-_]#', '', $language);
+        $language = preg_replace('#[^a-zA-Z0-9\-_]#', '', $language);
         $this->language = strtolower($language);
 
         $file_name = $this->language_path . $this->language . '.php';
@@ -2084,7 +2084,7 @@ class GeSHi {
         foreach ($this->language_data['REGEXPS'] as $key => $regexp) {
             if ($this->lexic_permissions['REGEXPS'][$key]) {
                 if (is_array($regexp)) {
-                    $stuff_to_parse = preg_replace_callback(
+                    $stuff_to_parse = preg_replace(
                         "/" .
                         str_replace('/', '\/', $regexp[GESHI_SEARCH]) .
                         "/{$regexp[GESHI_MODIFIERS]}",
@@ -2093,7 +2093,7 @@ class GeSHi {
                     );
                 }
                 else {
-                    $stuff_to_parse = preg_replace_callback( "/(" . str_replace('/', '\/', $regexp) . ")/", "<|!REG3XP$key!>\\1|>", $stuff_to_parse);
+                    $stuff_to_parse = preg_replace( "/(" . str_replace('/', '\/', $regexp) . ")/", "<|!REG3XP$key!>\\1|>", $stuff_to_parse);
                 }
             }
         }
@@ -2108,7 +2108,7 @@ class GeSHi {
         // NEW ONE: Brice Bernard
         //
         if ($this->lexic_permissions['NUMBERS'] && preg_match('#[0-9]#', $stuff_to_parse )) {
-            $stuff_to_parse = preg_replace_callback('/([-+]?\\b(?:[0-9]*\\.)?[0-9]+\\b)/', '<|/NUM!/>\\1|>', $stuff_to_parse);
+            $stuff_to_parse = preg_replace('/([-+]?\\b(?:[0-9]*\\.)?[0-9]+\\b)/', '<|/NUM!/>\\1|>', $stuff_to_parse);
         }
 
         // Highlight keywords
@@ -2131,7 +2131,7 @@ class GeSHi {
                             // get highlighted if the language has a CSS keyword in it (like CSS, for example ;))
                             $styles = "/$k/";
                             if ($this->language_data['CASE_SENSITIVE'][$k]) {
-                                $stuff_to_parse = preg_replace_callback(
+                                $stuff_to_parse = preg_replace(
                                     "/([^a-zA-Z0-9\$_\|\#;>|^])($keyword)(?=[^a-zA-Z0-9_<\|%\-&])/e",
                                     "'\\1' . $func2('\\2', '$k', 'BEGIN') . '<|$styles>' . $func('\\2') . '|>' . $func2('\\2', '$k', 'END')",
                                     $stuff_to_parse
@@ -2141,7 +2141,7 @@ class GeSHi {
                                 // Change the case of the word.
                                 // hackage again... must... release... 1.2...
                                 if ('smarty' == $this->language) { $hackage = '\/'; } else { $hackage = ''; }
-                                $stuff_to_parse = preg_replace_callback(
+                                $stuff_to_parse = preg_replace(
                                     "/([^a-zA-Z0-9\$_\|\#;>$hackage|^])($keyword)(?=[^a-zA-Z0-9_<\|%\-&])/ie",
                                     "'\\1' . $func2('\\2', '$k', 'BEGIN') . '<|$styles>' . $func('\\2') . '|>' . $func2('\\2', '$k', 'END')",
                                     $stuff_to_parse
@@ -2188,7 +2188,7 @@ class GeSHi {
                     else {
                         $attributes = ' class="me' . $key . '"';
                     }
-                    $stuff_to_parse = preg_replace_callback("/(" . preg_quote($this->language_data['OBJECT_SPLITTERS'][$key], 1) . "[\s]*)([a-zA-Z\*\(][a-zA-Z0-9_\*]*)/", "\\1<|$attributes>\\2|>", $stuff_to_parse);
+                    $stuff_to_parse = preg_replace("/(" . preg_quote($this->language_data['OBJECT_SPLITTERS'][$key], 1) . "[\s]*)([a-zA-Z\*\(][a-zA-Z0-9_\*]*)/", "\\1<|$attributes>\\2|>", $stuff_to_parse);
                 }
             }
         }
@@ -2351,8 +2351,8 @@ class GeSHi {
         }
 
         // purge some unnecessary stuff
-        $parsed_code = preg_replace_callback('#<span[^>]+>(\s*)</span>#', '\\1', $parsed_code);
-        $parsed_code = preg_replace_callback('#<div[^>]+>(\s*)</div>#', '\\1', $parsed_code);
+        $parsed_code = preg_replace('#<span[^>]+>(\s*)</span>#', '\\1', $parsed_code);
+        $parsed_code = preg_replace('#<div[^>]+>(\s*)</div>#', '\\1', $parsed_code);
 
         // If we are using IDs for line numbers, there needs to be an overall
         // ID set to prevent collisions.

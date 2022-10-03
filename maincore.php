@@ -215,7 +215,7 @@ function theme_exists($theme) {
 }
 
 if (isset($_POST['login']) && isset($_POST['user_name']) && isset($_POST['user_pass'])) {
-	$user_name = preg_replace_callback(array("/\=/","/\#/","/\sOR\s/"), "", stripinput($_POST['user_name']));
+	$user_name = preg_replace(array("/\=/","/\#/","/\sOR\s/"), "", stripinput($_POST['user_name']));
 	$user_pass = md5($_POST['user_pass']);
 	$result = dbquery("SELECT * FROM ".DB_USERS." WHERE user_name='".$user_name."' AND user_password='".md5($user_pass)."' LIMIT 1");
 	if (dbrows($result)) {
@@ -410,7 +410,7 @@ function parsesmileys($message) {
 			foreach ($smiley_cache as $smiley) {
 				$smiley_code = preg_quote($smiley['smiley_code']);
 				$smiley_image = "<img src='".get_image("smiley_".$smiley['smiley_text'])."' alt='".$smiley['smiley_text']."' style='vertical-align:middle;' />";
-				$message = preg_replace_callback("#{$smiley_code}#si", $smiley_image, $message);
+				$message = preg_replace("#{$smiley_code}#si", $smiley_image, $message);
 			}
 		}
 	}
@@ -525,7 +525,7 @@ function formatcode($text) {
 	$text = str_replace("  ", "&nbsp; ", $text);
 	$text = str_replace("  ", " &nbsp;", $text);
 	$text = str_replace("\t", "&nbsp; &nbsp;", $text);
-	$text = preg_replace_callback("/^ {1}/m", "&nbsp;", $text);
+	$text = preg_replace("/^ {1}/m", "&nbsp;", $text);
 	return $text;
 }
 
@@ -538,7 +538,7 @@ function highlight_words($word, $subject) {
 				$char = substr($regex_chars, $i, 1);
 				$word[$j] = str_replace($char, '\\'.$char, $word[$j]);
 			}
-			$subject = preg_replace_callback("/(".$word[$j].")/is", "<span style='background-color:yellow;font-weight:bold;padding-left:2px;padding-right:2px'>\\1</span>", $subject);
+			$subject = preg_replace("/(".$word[$j].")/is", "<span style='background-color:yellow;font-weight:bold;padding-left:2px;padding-right:2px'>\\1</span>", $subject);
 		}
 	}
 	return $subject;
@@ -562,19 +562,19 @@ function descript($text, $striptags = true) {
 		);
 	$entities = count($search);
 	for ($i=0; $i < $entities; $i++) {
-		$text = preg_replace_callback("#(&\#)(0*".$search[$i]."+);*#si", $replace[$i], $text);
+		$text = preg_replace("#(&\#)(0*".$search[$i]."+);*#si", $replace[$i], $text);
 	}
-	$text = preg_replace_callback('#(&\#x)([0-9A-F]+);*#si', "", $text);
-	$text = preg_replace_callback('#(<[^>]+[/\"\'\s])(onmouseover|onmousedown|onmouseup|onmouseout|onmousemove|onclick|ondblclick|onfocus|onload|xmlns)[^>]*>#iU', ">", $text);
-	$text = preg_replace_callback('#([a-z]*)=([\`\'\"]*)script:#iU', '$1=$2nojscript...', $text);
-	$text = preg_replace_callback('#([a-z]*)=([\`\'\"]*)javascript:#iU', '$1=$2nojavascript...', $text);
-	$text = preg_replace_callback('#([a-z]*)=([\'\"]*)vbscript:#iU', '$1=$2novbscript...', $text);
-	$text = preg_replace_callback('#(<[^>]+)style=([\`\'\"]*).*expression\([^>]*>#iU', "$1>", $text);
-	$text = preg_replace_callback('#(<[^>]+)style=([\`\'\"]*).*behaviour\([^>]*>#iU', "$1>", $text);
+	$text = preg_replace('#(&\#x)([0-9A-F]+);*#si', "", $text);
+	$text = preg_replace('#(<[^>]+[/\"\'\s])(onmouseover|onmousedown|onmouseup|onmouseout|onmousemove|onclick|ondblclick|onfocus|onload|xmlns)[^>]*>#iU', ">", $text);
+	$text = preg_replace('#([a-z]*)=([\`\'\"]*)script:#iU', '$1=$2nojscript...', $text);
+	$text = preg_replace('#([a-z]*)=([\`\'\"]*)javascript:#iU', '$1=$2nojavascript...', $text);
+	$text = preg_replace('#([a-z]*)=([\'\"]*)vbscript:#iU', '$1=$2novbscript...', $text);
+	$text = preg_replace('#(<[^>]+)style=([\`\'\"]*).*expression\([^>]*>#iU', "$1>", $text);
+	$text = preg_replace('#(<[^>]+)style=([\`\'\"]*).*behaviour\([^>]*>#iU', "$1>", $text);
 	if ($striptags) {
 		do {
 			$thistext = $text;
-			$text = preg_replace_callback('#</*(applet|meta|xml|blink|link|style|script|embed|object|iframe|frame|frameset|ilayer|layer|bgsound|title|base)[^>]*>#i', "", $text);
+			$text = preg_replace('#</*(applet|meta|xml|blink|link|style|script|embed|object|iframe|frame|frameset|ilayer|layer|bgsound|title|base)[^>]*>#i', "", $text);
 		} while ($thistext != $text);
 	}
 	return $text;
@@ -635,7 +635,7 @@ function censorwords($text) {
 	if ($settings['bad_words_enabled'] == "1" && $settings['bad_words'] != "" ) {
 		$word_list = explode("\r\n", $settings['bad_words']);
 		for ($i=0; $i < count($word_list); $i++) {
-			if ($word_list[$i] != "") $text = preg_replace_callback("/".$word_list[$i]."/si", $settings['bad_word_replace'], $text);
+			if ($word_list[$i] != "") $text = preg_replace("/".$word_list[$i]."/si", $settings['bad_word_replace'], $text);
 		}
 	}
 	return $text;

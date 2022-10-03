@@ -17,5 +17,5 @@
 +--------------------------------------------------------*/
 if (!defined("IN_FUSION")) { die("Access Denied"); }
 
-$text = preg_replace_callback('#\[i\](.*?)\[/i\]#si', '<i>\1</i>', $text);
+$text = preg_replace('#\[i\](.*?)\[/i\]#si', '<i>\1</i>', $text);
 ?>

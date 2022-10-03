@@ -35,7 +35,7 @@ for($i=0; $i<count($matches[0]); $i++) {
    } else {
       $php_save = "";
    }   
-   $text = preg_replace_callback("#\[php\](.*?)\[/php\]#si",'$1',$text);
+   $text = preg_replace("#\[php\](.*?)\[/php\]#si",'$1',$text);
    $text = str_replace($matches[1][$i], "<div class='tbl-border tbl2' style='width:400px'>".$php_save."<strong>".$locale['bb_php']."</strong></div><div class='tbl-border tbl1' style='width:400px;height:auto;white-space:nowrap;overflow:auto;background-color:#ffffff;'>".$parsed."</div>", $text);
    $text = str_replace("<ol>\n", "<ol>", $text);
    $text = str_replace("</li>\n", "</li>", $text);
